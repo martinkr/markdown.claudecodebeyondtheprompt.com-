@@ -1,0 +1,16 @@
+---
+// Molecule: highlighted hint or gotcha.
+import Surface from '../atoms/Surface.astro';
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Text from '../atoms/Text.astro';
+
+interface Props { label?: string }
+const { label = 'Tip' } = Astro.props;
+---
+<Surface tone="accent">
+  <Stack gap="xs">
+    <Eyebrow>{label}</Eyebrow>
+    <Text><slot /></Text>
+  </Stack>
+</Surface>

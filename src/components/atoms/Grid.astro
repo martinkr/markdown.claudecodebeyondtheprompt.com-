@@ -1,0 +1,7 @@
+---
+interface Props { cols?: 2 | 'sidebar'; gap?: 'md' | 'lg' }
+const { cols = 2, gap = 'md' } = Astro.props;
+const layouts = { 2: 'md:grid-cols-2', sidebar: 'lg:grid-cols-[14rem_minmax(0,1fr)]' };
+const gaps = { md: 'gap-4', lg: 'gap-10' };
+---
+<div class:list={['grid grid-cols-1 [&>*]:min-w-0', layouts[cols], gaps[gap]]}><slot /></div>

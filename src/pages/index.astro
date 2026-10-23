@@ -1,0 +1,176 @@
+---
+// Page: Markdown reference. Composes the template and organisms; the
+// "Readers see" previews are content built from atoms.
+import ReferenceTemplate from '../templates/ReferenceTemplate.astro';
+import SyntaxSection from '../components/organisms/SyntaxSection.astro';
+import SyntaxExample from '../components/organisms/SyntaxExample.astro';
+import CheatSheet from '../components/organisms/CheatSheet.astro';
+import Tip from '../components/molecules/Tip.astro';
+import Heading from '../components/atoms/Heading.astro';
+import Text from '../components/atoms/Text.astro';
+import InlineCode from '../components/atoms/InlineCode.astro';
+import Surface from '../components/atoms/Surface.astro';
+import Pre from '../components/atoms/Pre.astro';
+import List from '../components/atoms/List.astro';
+import ListItem from '../components/atoms/ListItem.astro';
+import Checkbox from '../components/atoms/Checkbox.astro';
+import Blockquote from '../components/atoms/Blockquote.astro';
+import Table from '../components/atoms/Table.astro';
+import TableRow from '../components/atoms/TableRow.astro';
+import TableCell from '../components/atoms/TableCell.astro';
+import { sections, samples, cheatSheet } from '../data/markdown-reference';
+
+const greet = ['function greet(name) {', '  return `Hello, ${name}!`;', '}'].join('\n');
+const shell = ['git checkout -b feature/docs', 'npm run build'].join('\n');
+---
+<ReferenceTemplate
+  title="Markdown basics — Claude Code: Beyond the Prompt"
+  description="A quick reference for Markdown headings, inline code, code blocks, lists, quotes and tables."
+  toc={sections}
+>
+  <SyntaxSection id="headings" eyebrow="01" title="Headings">
+    <Fragment slot="intro">
+      Start a line with one to six <InlineCode>#</InlineCode> characters followed by a space.
+      More hashes mean a smaller, lower-level heading.
+    </Fragment>
+    <SyntaxExample code={samples.headings}>
+      <Heading level={4} size="display">Heading 1</Heading>
+      <Heading level={4} size="xl">Heading 2</Heading>
+      <Heading level={4} size="lg">Heading 3</Heading>
+      <Heading level={4} size="md">Heading 4</Heading>
+      <Heading level={4} size="sm">Heading 5</Heading>
+      <Heading level={4} size="xs">Heading 6</Heading>
+    </SyntaxExample>
+    <Tip>
+      Use one <InlineCode>#</InlineCode> heading per document and don't skip levels. Screen readers
+      and generated tables of contents rely on that outline.
+    </Tip>
+  </SyntaxSection>
+
+  <SyntaxSection id="inline-code" eyebrow="02" title="Inline code">
+    <Fragment slot="intro">
+      Wrap commands, file names or short snippets in single backticks to show them in a monospace font.
+    </Fragment>
+    <SyntaxExample code={samples.inlineCode}>
+      <Text>Run <InlineCode>npm install</InlineCode> before you start.</Text>
+      <Text>Show a backtick: <InlineCode>`code`</InlineCode></Text>
+    </SyntaxExample>
+    <Tip label="Backticks inside code">
+      If your snippet contains a backtick, wrap it in double backticks and add a space on each side.
+    </Tip>
+  </SyntaxSection>
+
+  <SyntaxSection id="code-blocks" eyebrow="03" title="Code blocks">
+    <Fragment slot="intro">
+      Put three backticks on the line before and after a multi-line snippet. Add a language name after
+      the opening backticks to turn on syntax highlighting.
+    </Fragment>
+    <SyntaxExample title="With a language" code={samples.fenced}>
+      <Surface tone="terminal"><Pre code={greet} /></Surface>
+    </SyntaxExample>
+    <SyntaxExample title="Terminal commands" code={samples.fencedShell}>
+      <Surface tone="terminal"><Pre code={shell} /></Surface>
+    </SyntaxExample>
+    <Tip>
+      Common language names: <InlineCode>js</InlineCode>, <InlineCode>ts</InlineCode>,
+      <InlineCode>python</InlineCode>, <InlineCode>bash</InlineCode>, <InlineCode>json</InlineCode>,
+      <InlineCode>yaml</InlineCode>, <InlineCode>diff</InlineCode>. To show a fence inside a fence, wrap the
+      outer block in four backticks.
+    </Tip>
+  </SyntaxSection>
+
+  <SyntaxSection id="lists" eyebrow="04" title="Lists">
+    <Fragment slot="intro">
+      Start lines with <InlineCode>-</InlineCode> for bullets or <InlineCode>1.</InlineCode> for numbers.
+      Indent by two spaces to nest a list.
+    </Fragment>
+    <SyntaxExample title="Bullet list" code={samples.unordered}>
+      <List>
+        <ListItem>Apples</ListItem>
+        <ListItem>Oranges
+          <List>
+            <ListItem>Blood orange</ListItem>
+            <ListItem>Navel</ListItem>
+          </List>
+        </ListItem>
+        <ListItem>Pears</ListItem>
+      </List>
+    </SyntaxExample>
+    <SyntaxExample title="Numbered list" code={samples.ordered}>
+      <List ordered>
+        <ListItem>Clone the repo</ListItem>
+        <ListItem>Install dependencies</ListItem>
+        <ListItem>Start the dev server</ListItem>
+      </List>
+    </SyntaxExample>
+    <SyntaxExample title="Task list" code={samples.tasks}>
+      <List plain>
+        <ListItem><Checkbox checked />Write the draft</ListItem>
+        <ListItem><Checkbox />Review it</ListItem>
+        <ListItem><Checkbox />Publish</ListItem>
+      </List>
+    </SyntaxExample>
+    <Tip>
+      Leave a blank line between a paragraph and a list, or some renderers treat the list as part of the paragraph.
+    </Tip>
+  </SyntaxSection>
+
+  <SyntaxSection id="quotes" eyebrow="05" title="Quotes">
+    <Fragment slot="intro">
+      Start a line with <InlineCode>&gt;</InlineCode> to quote it. A lone <InlineCode>&gt;</InlineCode> keeps
+      paragraphs in the same quote, and <InlineCode>&gt;&gt;</InlineCode> nests one quote inside another.
+    </Fragment>
+    <SyntaxExample code={samples.quote}>
+      <Blockquote>
+        <Text>Simplicity is prerequisite for reliability.</Text>
+        <Text tone="muted">— Edsger W. Dijkstra</Text>
+      </Blockquote>
+    </SyntaxExample>
+    <SyntaxExample title="Nested quote" code={samples.nestedQuote}>
+      <Blockquote>
+        <Text>First level</Text>
+        <Blockquote><Text>Nested reply</Text></Blockquote>
+      </Blockquote>
+    </SyntaxExample>
+  </SyntaxSection>
+
+  <SyntaxSection id="tables" eyebrow="06" title="Tables">
+    <Fragment slot="intro">
+      Separate columns with pipes <InlineCode>|</InlineCode> and put a row of dashes under the header.
+      Colons in that row set the alignment: <InlineCode>:--</InlineCode> left, <InlineCode>:-:</InlineCode>
+      center, <InlineCode>--:</InlineCode> right.
+    </Fragment>
+    <SyntaxExample code={samples.table}>
+      <Table>
+        <thead>
+          <TableRow>
+            <TableCell header>Command</TableCell>
+            <TableCell header align="center">Purpose</TableCell>
+            <TableCell header align="right">Runs</TableCell>
+          </TableRow>
+        </thead>
+        <tbody>
+          <TableRow>
+            <TableCell><InlineCode>dev</InlineCode></TableCell>
+            <TableCell align="center">Local server</TableCell>
+            <TableCell align="right">1</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><InlineCode>build</InlineCode></TableCell>
+            <TableCell align="center">Production</TableCell>
+            <TableCell align="right">2</TableCell>
+          </TableRow>
+        </tbody>
+      </Table>
+    </SyntaxExample>
+    <Tip>
+      The pipes don't have to line up. Aligning them only makes the source easier to read. To use a
+      literal pipe inside a cell, write <InlineCode>\|</InlineCode>.
+    </Tip>
+  </SyntaxSection>
+
+  <SyntaxSection id="cheat-sheet" eyebrow="07" title="Cheat sheet">
+    <Fragment slot="intro">Everything on this page at a glance.</Fragment>
+    <CheatSheet rows={cheatSheet} />
+  </SyntaxSection>
+</ReferenceTemplate>

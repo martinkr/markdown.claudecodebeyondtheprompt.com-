@@ -1,0 +1,18 @@
+---
+// Organism: source and rendered result side by side.
+import Stack from '../atoms/Stack.astro';
+import Grid from '../atoms/Grid.astro';
+import Heading from '../atoms/Heading.astro';
+import CodeSample from '../molecules/CodeSample.astro';
+import RenderedPreview from '../molecules/RenderedPreview.astro';
+
+interface Props { code: string; title?: string }
+const { code, title } = Astro.props;
+---
+<Stack gap="sm">
+  {title && <Heading level={3} size="sm">{title}</Heading>}
+  <Grid cols={2}>
+    <CodeSample code={code} />
+    <RenderedPreview><slot /></RenderedPreview>
+  </Grid>
+</Stack>

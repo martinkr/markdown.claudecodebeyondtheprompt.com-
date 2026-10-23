@@ -1,0 +1,14 @@
+---
+// Molecule: one row of the quick-reference table.
+import TableRow from '../atoms/TableRow.astro';
+import TableCell from '../atoms/TableCell.astro';
+import InlineCode from '../atoms/InlineCode.astro';
+import Link from '../atoms/Link.astro';
+
+interface Props { element: string; syntax: string; href: string }
+const { element, syntax, href } = Astro.props;
+---
+<TableRow>
+  <TableCell><Link href={href}>{element}</Link></TableCell>
+  <TableCell><InlineCode>{syntax}</InlineCode></TableCell>
+</TableRow>

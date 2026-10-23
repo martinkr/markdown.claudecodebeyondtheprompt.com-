@@ -1,0 +1,8 @@
+---
+interface Props { label: string; [key: `data-${string}`]: string }
+const { label, ...data } = Astro.props;
+---
+<button type="button" aria-label={label} {...data}
+  class="rounded-md border border-line bg-panel-2 px-2.5 py-1 text-xs font-semibold text-muted transition hover:border-accent hover:text-accent">
+  <slot />
+</button>

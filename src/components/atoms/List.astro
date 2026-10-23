@@ -1,0 +1,7 @@
+---
+interface Props { ordered?: boolean; plain?: boolean }
+const { ordered = false, plain = false } = Astro.props;
+const Tag = ordered ? 'ol' : 'ul';
+const marker = plain ? 'list-none pl-0' : ordered ? 'list-decimal pl-6' : 'list-disc pl-6';
+---
+<Tag class:list={['space-y-1 marker:text-accent', marker]}><slot /></Tag>

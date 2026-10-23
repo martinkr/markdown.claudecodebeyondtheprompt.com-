@@ -1,0 +1,17 @@
+---
+// Organism: quick-reference table.
+import Surface from '../atoms/Surface.astro';
+import Table from '../atoms/Table.astro';
+import TableRow from '../atoms/TableRow.astro';
+import TableCell from '../atoms/TableCell.astro';
+import CheatRow from '../molecules/CheatRow.astro';
+
+interface Props { rows: { element: string; syntax: string; href: string }[] }
+const { rows } = Astro.props;
+---
+<Surface padded={false}>
+  <Table>
+    <thead><TableRow><TableCell header>Element</TableCell><TableCell header>Syntax</TableCell></TableRow></thead>
+    <tbody>{rows.map((row) => <CheatRow {...row} />)}</tbody>
+  </Table>
+</Surface>

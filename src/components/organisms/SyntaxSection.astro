@@ -1,0 +1,12 @@
+---
+// Organism: one Markdown element, with intro and examples.
+import Stack from '../atoms/Stack.astro';
+import SectionIntro from '../molecules/SectionIntro.astro';
+
+interface Props { id: string; eyebrow: string; title: string }
+const { id, eyebrow, title } = Astro.props;
+---
+<Stack as="section" gap="lg">
+  <SectionIntro id={id} eyebrow={eyebrow} title={title}><slot name="intro" /></SectionIntro>
+  <slot />
+</Stack>

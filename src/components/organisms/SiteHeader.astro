@@ -1,0 +1,17 @@
+---
+// Organism: top bar.
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Link from '../atoms/Link.astro';
+import Text from '../atoms/Text.astro';
+import Divider from '../atoms/Divider.astro';
+---
+<Stack as="header" gap="xs">
+  <Container>
+    <Stack direction="row" align="between" class="py-3">
+      <Link href="/" variant="brand">Claude Code: Beyond the Prompt</Link>
+      <Text as="span" tone="muted" size="sm">Reader reference</Text>
+    </Stack>
+  </Container>
+  <Divider />
+</Stack>

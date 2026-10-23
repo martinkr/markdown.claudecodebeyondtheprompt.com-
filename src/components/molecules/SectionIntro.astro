@@ -1,0 +1,15 @@
+---
+// Molecule: eyebrow + heading + lead text that opens a section.
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+
+interface Props { id: string; eyebrow: string; title: string }
+const { id, eyebrow, title } = Astro.props;
+---
+<Stack gap="sm">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <Heading level={2} id={id}>{title}</Heading>
+  <Text tone="muted" size="lg"><slot /></Text>
+</Stack>

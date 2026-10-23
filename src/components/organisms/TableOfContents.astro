@@ -1,0 +1,16 @@
+---
+// Organism: sticky section navigation.
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import List from '../atoms/List.astro';
+import NavItem from '../molecules/NavItem.astro';
+
+interface Props { items: { id: string; title: string }[] }
+const { items } = Astro.props;
+---
+<Stack as="nav" gap="sm" label="On this page" class="lg:sticky lg:top-6 lg:self-start">
+  <Eyebrow tone="muted">On this page</Eyebrow>
+  <List plain>
+    {items.map((item) => <NavItem href={`#${item.id}`}>{item.title}</NavItem>)}
+  </List>
+</Stack>

@@ -1,0 +1,12 @@
+---
+// Molecule: how the Markdown renders.
+import Surface from '../atoms/Surface.astro';
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+---
+<Surface>
+  <Stack gap="sm">
+    <Eyebrow>Readers see</Eyebrow>
+    <Stack gap="sm"><slot /></Stack>
+  </Stack>
+</Surface>

@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Design tokens — shared with the claudecodebeyondtheprompt.com site palette */
+@theme {
+  --color-ink: #0b1421;
+  --color-panel: #132234;
+  --color-panel-2: #182c40;
+  --color-line: #2a4155;
+  --color-accent: #04c5e7;
+  --color-accent-strong: #00b8db;
+  --color-muted: #acbdcb;
+  --color-snow: #f7fbff;
+  --color-success: #7ee0a9;
+  --color-terminal: #091625;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+:root { color-scheme: dark; scroll-behavior: smooth; }
+body { @apply bg-ink text-snow font-sans leading-relaxed antialiased; }
+:target { scroll-margin-top: 1.5rem; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }

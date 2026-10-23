@@ -1,0 +1,34 @@
+---
+// Template: document shell with header, sidebar navigation and footer.
+import '../styles/global.css';
+import Container from '../components/atoms/Container.astro';
+import Grid from '../components/atoms/Grid.astro';
+import Stack from '../components/atoms/Stack.astro';
+import SiteHeader from '../components/organisms/SiteHeader.astro';
+import Hero from '../components/organisms/Hero.astro';
+import TableOfContents from '../components/organisms/TableOfContents.astro';
+import SiteFooter from '../components/organisms/SiteFooter.astro';
+
+interface Props { title: string; description: string; toc: { id: string; title: string }[] }
+const { title, description, toc } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteHeader />
+    <Container>
+      <Hero />
+      <Grid cols="sidebar" gap="lg">
+        <TableOfContents items={toc} />
+        <Stack as="main" gap="xl"><slot /></Stack>
+      </Grid>
+    </Container>
+    <SiteFooter />
+  </body>
+</html>

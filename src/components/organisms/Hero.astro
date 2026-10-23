@@ -1,0 +1,17 @@
+---
+// Organism: page intro.
+import Stack from '../atoms/Stack.astro';
+import Eyebrow from '../atoms/Eyebrow.astro';
+import Heading from '../atoms/Heading.astro';
+import Text from '../atoms/Text.astro';
+import InlineCode from '../atoms/InlineCode.astro';
+---
+<Stack gap="md" class="py-12">
+  <Eyebrow>Reference</Eyebrow>
+  <Heading level={1}>Markdown basics</Heading>
+  <Text tone="muted" size="lg">
+    Markdown is plain text with a few symbols that turn into formatting. You'll find it in
+    <InlineCode>README.md</InlineCode> files, pull requests, docs, chat tools and prompt files.
+    Each example below shows what you type next to what readers see.
+  </Text>
+</Stack>

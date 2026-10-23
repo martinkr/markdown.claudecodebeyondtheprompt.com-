@@ -1,0 +1,17 @@
+---
+// Organism: footer.
+import Container from '../atoms/Container.astro';
+import Stack from '../atoms/Stack.astro';
+import Divider from '../atoms/Divider.astro';
+import Text from '../atoms/Text.astro';
+import Link from '../atoms/Link.astro';
+---
+<Stack as="footer" gap="md" class="mt-16 pb-10">
+  <Divider />
+  <Container>
+    <Text tone="muted" size="sm">
+      Most tools follow <Link href="https://github.github.com/gfm/">GitHub Flavored Markdown</Link>,
+      which adds tables and task lists to the original syntax.
+    </Text>
+  </Container>
+</Stack>
